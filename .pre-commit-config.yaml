@@ -1,0 +1,32 @@
+# pre-commit 설정파일
+repos:
+  # ruff확인
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: "v0.0.264"
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+
+  # ruff에서 미지원되는 부분을 block으로 보완
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+        args: [src/]
+
+  # mypy 확인
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.2.0
+    hooks:
+      - id: mypy
+        exclude: ^tests/|^any-path/ # mypy의 제외 디렉토리, 정규식으로 작성할 수 있음
+        additional_dependencies: [pydantic, types-PyYAML==6.0.7]
+
+  # 일반적인 체크
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace # 줄끝의 공백 제거
+      - id: end-of-file-fixer # 파일마지막에 줄바꿈 추가
+      - id: check-yaml # yaml의 구문검사
+      - id: check-added-large-files # 큰파일이 커밋되지않도록 함
