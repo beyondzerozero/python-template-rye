@@ -1,7 +1,7 @@
 [project]
 name = "python-template-rye"
 version = "0.1.0"
-description = "Ryefmf tkdydgks Python 프로젝트 템플릿"
+description = "Ryef를 사용한 Python 프로젝트 템플릿"
 authors = [
     { name = "beyondzerozero", email = "beyond-zero@naver.com" }
 ]
